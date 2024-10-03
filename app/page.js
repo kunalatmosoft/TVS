@@ -1,101 +1,137 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import React, { useState } from 'react';
+import { bikes } from '../constants/bikes'; // Import the bikes data
+import { Navbar } from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
+
+// FAQ Section
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const faqs = [
+    { question: 'What is the warranty period for TVS bikes?', answer: 'The warranty period for TVS bikes is typically 5 years or 60,000 kilometers, whichever comes first.' },
+    { question: 'How often should I service my TVS bike?', answer: 'It’s recommended to service your TVS bike every 3000 kilometers or every 3 months, whichever comes first.' },
+    { question: 'Where can I book a test ride?', answer: 'You can book a test ride directly from our website or visit any nearby TVS dealership.' },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <section id="faq" className="py-16 bg-gray-100 text-center">
+      <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
+      <div className="max-w-2xl mx-auto space-y-4">
+        {faqs.map((faq, index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+            <button onClick={() => toggleFAQ(index)} className="w-full text-left text-xl font-semibold">
+              {faq.question}
+            </button>
+            {openIndex === index && <p className="mt-4 text-gray-700">{faq.answer}</p>}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+// Contact Section
+const Contact = () => {
+  return (
+    <section id="contact" className="py-16 bg-white text-center">
+      <h2 className="text-3xl font-bold mb-8">Contact Us</h2>
+      <div className="max-w-md mx-auto">
+        <form className="space-y-6">
+          <div>
+            <input type="text" placeholder="Your Name" className="w-full p-4 border border-gray-300 rounded-lg" required />
+          </div>
+          <div>
+            <input type="email" placeholder="Your Email" className="w-full p-4 border border-gray-300 rounded-lg" required />
+          </div>
+          <div>
+            <textarea placeholder="Your Message" className="w-full p-4 border border-gray-300 rounded-lg" required />
+          </div>
+          <button type="submit" className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg">Send Message</button>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+
+
+// Main Page Component
+const IndexPage = () => {
+  // Dynamic Hero section content
+  const heroData = {
+    image: 'https://images.hdqwalls.com/wallpapers/honda-motorcycle-track-bike-qj.jpg',
+    headline: "Power, Style, and Innovation: Discover the Perfect TVS Bike for You",
+    subheadline: "Experience unmatched performance with cutting-edge design and technology.",
+  };
+
+  return (
+    <div>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="relative bg-cover bg-center h-screen text-white" style={{ backgroundImage: `url(${heroData.image})` }}>
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="text-center px-4">
+            <h1 className="text-5xl font-bold mb-4">{heroData.headline}</h1>
+            <p className="text-lg mb-6">{heroData.subheadline}</p>
+            <a href="/Bookings" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">Book a Test Ride</a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Key Features Section */}
+      <section id="features" className="py-16 bg-gray-100 text-center">
+        <h2 className="text-3xl font-bold mb-8">Key Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-16">
+          <div className="bg-white shadow-md p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-4">Superior Performance</h3>
+            <p>Powerful Engine Range from 125cc to 200cc.</p>
+          </div>
+          <div className="bg-white shadow-md p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-4">Innovative Design</h3>
+            <p>Sleek Aerodynamic Build with LED Headlights, Digital Cluster.</p>
+          </div>
+          <div className="bg-white shadow-md p-6 rounded-lg">
+            <h3 className="text-xl font-semibold mb-4">Safety First</h3>
+            <p>ABS, Dual-Channel Disc Brakes, and more.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Bike Models Section */}
+      <section id="models" className="py-16 bg-white text-center">
+        <h2 className="text-3xl font-bold mb-8">Explore TVS Models</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-16">
+          {bikes.map(bike => (
+            <div key={bike.id} className="bg-gray-100 shadow-md p-6 rounded-lg">
+              <img src={bike.image} alt={bike.name} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <h3 className="text-2xl font-semibold mb-4">{bike.name}</h3>
+              <p className="mb-2">{bike.engine}</p>
+              <p className="mb-2">{bike.power}</p>
+              <p className="mb-4">{bike.price}</p>
+              <a href="#learn-more" className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg">Learn More</a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* Contact Section */}
+      <Contact />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
-}
+};
+
+export default IndexPage;
