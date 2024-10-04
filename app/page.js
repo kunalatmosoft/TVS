@@ -37,7 +37,7 @@ const FAQ = () => {
 };
 
 // Contact Section
-const Contact = () => {
+/* const Contact = () => {
   return (
     <section id="contact" className="py-16 bg-white text-center">
       <h2 className="text-3xl font-bold mb-8">Contact Us</h2>
@@ -58,7 +58,7 @@ const Contact = () => {
     </section>
   );
 };
-
+ */
 
 
 // Main Page Component
@@ -130,8 +130,8 @@ const IndexPage = () => {
       <FAQ />
 
       {/* Contact Section */}
-      <Contact />
-
+{/*       <Contact />
+ */}
       {/* Footer */}
       <Footer />
     </div>
