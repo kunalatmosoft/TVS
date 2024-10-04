@@ -66,8 +66,8 @@ const IndexPage = () => {
   // Dynamic Hero section content
   const heroData = {
     image: 'https://images.hdqwalls.com/wallpapers/honda-motorcycle-track-bike-qj.jpg',
-    headline: "Power, Style, and Innovation: Discover the Perfect TVS Bike for You",
-    subheadline: "Experience unmatched performance with cutting-edge design and technology.",
+    headline: "Powerful, Stylish, and Innovative ",
+    subheadline: " Discover the Perfect TVS Bike for You",
   };
 
   return (
@@ -81,7 +81,7 @@ const IndexPage = () => {
           <div className="text-center px-4">
             <h1 className="text-5xl font-bold mb-4">{heroData.headline}</h1>
             <p className="text-lg mb-6">{heroData.subheadline}</p>
-            <a href="/Bookings" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">Book a Test Ride</a>
+            <a href="/Bookings" className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg">Book your Fav. TVS</a>
           </div>
         </div>
       </section>
@@ -89,6 +89,10 @@ const IndexPage = () => {
       {/* Key Features Section */}
       <section id="features" className="py-16 bg-gray-100 text-center">
         <h2 className="text-3xl font-bold mb-8">Key Features</h2>
+        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
+        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
+        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
+        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-16">
           <div className="bg-white shadow-md p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4">Superior Performance</h3>
@@ -111,7 +115,7 @@ const IndexPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-16">
           {bikes.map(bike => (
             <div key={bike.id} className="bg-gray-100 shadow-md p-6 rounded-lg">
-              <img src={bike.image} alt={bike.name} className="w-full h-48 object-cover rounded-lg mb-4" />
+              <img src={bike.image} alt={bike.name} className="w-fit h-48 object-cover rounded-lg mb-4 align-middle justify-center" />
               <h3 className="text-2xl font-semibold mb-4">{bike.name}</h3>
               <p className="mb-2">{bike.engine}</p>
               <p className="mb-2">{bike.power}</p>

@@ -1,6 +1,9 @@
+// app/layout.js or your relevant layout file
+
 import localFont from "next/font/local";
 import Head from "next/head"; // Import Head from next/head
 import "./globals.css";
+import { AuthProvider } from "../context/AuthContext"; // Import the AuthProvider
 
 // Load local fonts
 const geistSans = localFont({
@@ -35,11 +38,13 @@ export default function RootLayout({ children }) {
           type="image/png"
           sizes="32x32"
         />
-                <title>{metadata.title}</title>
-                <meta name="description" content={metadata.description} />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <AuthProvider> {/* Wrap children with AuthProvider */}
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
